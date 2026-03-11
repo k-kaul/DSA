@@ -10,12 +10,12 @@ class Solution:
                 return ans
             
             if nums[low] <= nums[mid]:
-                if nums[low] <= target <= nums[mid]:
+                if target >= nums[low] and target <= nums[mid]:
                     high = mid - 1
                 else:
                     low = mid + 1
             else:
-                if nums[mid] <= target <= nums[high]:
+                if target >= nums[mid] and target <= nums[high]:
                     low = mid + 1
                 else:
                     high = mid - 1
