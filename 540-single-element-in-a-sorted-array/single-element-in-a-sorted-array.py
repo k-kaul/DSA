@@ -5,14 +5,22 @@ class Solution:
         if arrLen == 1:
             return nums[0]
 
-        for i in range(arrLen):
-            if(i == 0):
-                if(nums[i] != nums[i+1]):
-                    return nums[i]
-            elif(i == arrLen - 1):
-                if(nums[arrLen - 1] != nums[arrLen -2]):
-                    return nums[arrLen - 1]
-            else:
-                if(nums[i] != nums[i-1] and nums[i] != nums[i+1]):
-                    return nums[i]
+        if nums[0] != nums[1]:
+            return nums[0]
+        
+        if nums[arrLen - 1] != nums[arrLen -2]:
+            return nums[arrLen -1]
+
+        low, high = 1, arrLen - 2
+
+        while low <= high:
+            mid = (low + high) // 2
+
+            if nums[mid] != nums[mid -1] and nums[mid] != nums[mid + 1]:
+                return nums[mid]
+
+            if (mid % 2 == 0 and nums[mid] == nums[mid + 1]) or (mid % 2 == 1 and nums[mid] == nums[mid - 1]):
+                low = mid + 1
+            else: 
+                high = mid - 1        
         return -1
